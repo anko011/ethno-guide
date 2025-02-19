@@ -4,10 +4,10 @@ import {Flex, Skeleton} from '@radix-ui/themes'
 
 import {DeleteUserButton} from "@/features/users/delete";
 import {CreateUserButton} from "@/features/users/create";
+import {EditUserButton} from "@/features/users/edit";
 import {getUsersPaginationInfo, UsersTable} from "@/entities/users";
 import {Pagination} from "@/share/ui/pagination";
 import {SearchField} from "@/share/ui/search-field";
-import {EditUserButton} from "@/features/users/edit";
 
 const PAGE_SIZE = 10;
 
@@ -41,7 +41,7 @@ export default async function UsersPage(props: {
                                 actions={(user) => (
                                     <Flex gap="2">
                                         <EditUserButton userId={user.id} searchParams={searchParams}/>
-                                        <DeleteUserButton user={user} searchParams={searchParams}/>
+                                        <DeleteUserButton userId={user.id} searchParams={searchParams}/>
                                     </Flex>
                                 )}
                     />
