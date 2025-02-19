@@ -3,7 +3,7 @@ import {Tooltip} from "@radix-ui/themes";
 import {Link} from "@/share/ui/link";
 
 import {getAllAreas} from "../api/repository";
-import styles from './styles.module.css';
+import styles from './russian-map.module.css';
 
 export type AdministrationAreaProps = {
     title: string;

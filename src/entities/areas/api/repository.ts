@@ -38,3 +38,16 @@ export async function deleteArea(id: string): Promise<void> {
     await wait(1000);
     delete administrationAreas[id as keyof typeof administrationAreas];
 }
+
+export async function createArea(area: Omit<Area, 'id'>): Promise<void> {
+    await wait(1000);
+    const id = Math.random().toString();
+    administrationAreas[id as keyof typeof administrationAreas] = {id, ...area};
+}
+
+export async function editArea(areaId?: string, data?: Omit<Area, 'id'>): Promise<void> {
+    await wait(1000);
+    const area = administrationAreas[areaId as keyof typeof administrationAreas];
+    if (!area) throw new Error(`Area ${areaId} not found`);
+    administrationAreas[areaId as keyof typeof administrationAreas] = {...area, ...data};
+}

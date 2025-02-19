@@ -4,7 +4,9 @@ import {Heading as RadixHeading} from '@radix-ui/themes'
 import {usePathname} from "next/navigation";
 
 const headingRoutes = {
-    '/admin-panel/users': "Пользователи"
+    '/admin-panel/users': "Пользователи",
+    '/admin-panel/areas': "Регионы",
+    '/admin-panel/nations': "Национальности"
 } as const
 
 export function Heading() {

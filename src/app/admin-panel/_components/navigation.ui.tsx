@@ -22,17 +22,17 @@ export function Navigation() {
     return (
         <ScrollArea type="hover">
             <Flex direction="column">
-                <NavigationItem href="/">
+                <NavigationItem href="/admin-panel/users">
                     <PersonIcon/>
                     Пользователи
                 </NavigationItem>
 
-                <NavigationItem href="/">
+                <NavigationItem href="/admin-panel/areas">
                     <TableIcon/>
                     Регионы
                 </NavigationItem>
 
-                <NavigationItem href="/">
+                <NavigationItem href="/admin-panel/nations">
                     <BookmarkIcon/>
                     Народности
                 </NavigationItem>
