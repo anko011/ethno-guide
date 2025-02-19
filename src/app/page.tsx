@@ -1,13 +1,15 @@
-import {Flex, Heading, Text, TextField} from "@radix-ui/themes";
-import {RussianMap} from "@/share/ui/russian-map";
+import {Suspense} from "react";
+import {Flex, Heading, Skeleton, Text, TextField} from "@radix-ui/themes";
 import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
+
+import {RussianMap} from "@/entities/areas";
 
 
 export default function Home() {
     return (
         <Flex direction="column" align="start" justify="start" minHeight="100vh" minWidth="100vw" p="6" gap="4">
             <Flex direction="column" gap="4" align="center" minWidth="100%">
-                <Heading size="9">EthnoGuide</Heading>
+                <Heading size="9">Ethno Guide</Heading>
                 <Text size="5">Цифровой архив сохранения народов Российской Федерации</Text>
             </Flex>
 
@@ -19,7 +21,9 @@ export default function Home() {
             </TextField.Root>
 
             <Flex justify="center" minWidth="100%">
-                <RussianMap/>
+                <Suspense fallback={<Skeleton width="1224px" height="760px"/>}>
+                    <RussianMap/>
+                </Suspense>
             </Flex>
         </Flex>
     );

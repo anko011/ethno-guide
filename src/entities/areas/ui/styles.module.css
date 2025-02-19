@@ -1,15 +1,11 @@
-.map {
-
-}
-
-.map > path {
+.map path {
     transition: fill .2s;
     cursor: pointer;
     position: relative;
 }
 
 
-.map > path:hover {
+.map path:hover {
     fill: var(--iris-5);
 }
 
