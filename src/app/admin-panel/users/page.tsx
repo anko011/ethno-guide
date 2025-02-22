@@ -28,7 +28,7 @@ export default async function UsersPage(props: {
         <Flex direction="column" gap="4">
             <Flex gap="2">
                 <CreateUserButton searchParams={searchParams}/>
-                <SearchField style={{width: 230}} placeholder="Введите имя пользователя..."/>
+                <SearchField.Root style={{width: 230}} placeholder="Введите имя пользователя..."/>
             </Flex>
 
             <Suspense key={`${totalPages}-${query}-${currentPage}-${totalItems}`}

@@ -27,7 +27,7 @@ export default async function AreasPage(props: {
         <Flex direction="column" gap="4">
             <Flex gap="2">
                 <CreateAreaButton searchParams={searchParams}/>
-                <SearchField style={{width: 230}} placeholder="Введите название региона..."/>
+                <SearchField.Root style={{width: 230}} placeholder="Введите название региона..."/>
             </Flex>
 
             <Suspense key={`${totalPages}-${query}-${currentPage}-${totalItems}`}
@@ -39,7 +39,7 @@ export default async function AreasPage(props: {
                                 query={query}
                                 actions={(area) => (
                                     <Flex gap="2">
-                                        <EditAreaButton nationId={area.id} searchParams={searchParams}/>
+                                        <EditAreaButton areaId={area.id} searchParams={searchParams}/>
                                         <DeleteAreaButton areaId={area.id} searchParams={searchParams}/>
                                     </Flex>
                                 )}

@@ -27,7 +27,7 @@ export default async function NationsPage(props: {
         <Flex direction="column" gap="4">
             <Flex gap="2">
                 <CreateNationButton searchParams={searchParams}/>
-                <SearchField style={{width: 230}} placeholder="Введите название нации..."/>
+                <SearchField.Root style={{width: 230}} placeholder="Введите название нации..."/>
             </Flex>
 
             <Suspense key={`${totalPages}-${query}-${currentPage}-${totalItems}`}
