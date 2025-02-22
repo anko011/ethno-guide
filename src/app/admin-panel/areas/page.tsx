@@ -39,7 +39,7 @@ export default async function AreasPage(props: {
                                 query={query}
                                 actions={(area) => (
                                     <Flex gap="2">
-                                        <EditAreaButton areaId={area.id} searchParams={searchParams}/>
+                                        <EditAreaButton nationId={area.id} searchParams={searchParams}/>
                                         <DeleteAreaButton areaId={area.id} searchParams={searchParams}/>
                                     </Flex>
                                 )}

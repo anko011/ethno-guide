@@ -3,9 +3,9 @@ import {Dialog} from "@radix-ui/themes";
 
 export type ContentProps = Dialog.ContentProps;
 
-export function Content({children}: ContentProps) {
+export function Content({children, ...props}: ContentProps) {
     return (
-        <RadixDialog.Content aria-describedby={undefined}>
+        <RadixDialog.Content aria-describedby={undefined} {...props}>
             {children}
         </RadixDialog.Content>
     )

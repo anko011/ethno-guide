@@ -1,5 +1,7 @@
-import {type Nation, NationPopulation} from "./model/nation";
 import {administrationAreas} from "@/entities/areas/mock";
+
+import {type Nation} from "./model/nation";
+import {type Population} from "./model/population";
 
 export const nations: Nation[] = [
     {id: '1', name: 'Русские'},
@@ -18,7 +20,7 @@ export const nations: Nation[] = [
     {id: '14', name: 'Немцы'},
 ] satisfies Nation[]
 
-export const populations: NationPopulation[] = [
+export const populations: Population[] = [
     {
         nation: nations[0],
         area: administrationAreas['RU-ZAB'],
@@ -89,4 +91,4 @@ export const populations: NationPopulation[] = [
         area: administrationAreas['RU-ZAB'],
         count: 724,
     },
-] satisfies NationPopulation[]
+] satisfies Population[]

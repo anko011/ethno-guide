@@ -25,6 +25,11 @@ export async function getUser(id: string): Promise<User> {
     return user;
 }
 
+export async function getAllUsers(): Promise<User[]> {
+    await wait(1000);
+    return users;
+}
+
 export async function getUsersPaginationInfo(page: number, pageSize: number, query: string = ""): Promise<PaginationResult> {
     await wait(1000);
     return getPaginationData(searchByFullName(users, query), page, pageSize);

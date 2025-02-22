@@ -26,10 +26,10 @@ export async function RussianMap() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="1224.449"
-            height="760.6203"
+            viewBox="0 0 1224.449 760.6203"
             className={styles.map}
             fill="var(--iris-12)"
+            style={{}}
         >
             {areas.map((area) => (
                 <AdministrationArea key={area.id}

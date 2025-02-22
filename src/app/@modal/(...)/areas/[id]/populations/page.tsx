@@ -1,6 +1,6 @@
 import {Button, DataList, Dialog, ScrollArea, Text} from "@radix-ui/themes";
 
-import {getAllPopulationByArea} from "@/entities/nations";
+import {getAllPopulationsByArea} from "@/entities/nations";
 import {getAllAreas, getArea} from "@/entities/areas";
 import {Link} from "@/share/ui/link";
 
@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 
 export default async function AreaPopulationModal(props: { params: Promise<{ id: string }> }) {
     const {id} = await props.params;
-    const [area, populations] = await Promise.all([getArea(id), getAllPopulationByArea(id)])
+    const [area, populations] = await Promise.all([getArea(id), getAllPopulationsByArea(id)])
     return (
         <Dialog.Root defaultOpen>
             <Dialog.Content maxWidth="450px">

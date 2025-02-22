@@ -1,8 +1,8 @@
 import {DeleteUserAlert} from "@/features/users/delete";
-import {getUsers} from "@/entities/users";
+import {getAllUsers} from "@/entities/users";
 
 export async function generateStaticParams() {
-    const users = await getUsers(1, 1000);
+    const users = await getAllUsers();
     return users.map(({id}) => ({id}))
 }
 

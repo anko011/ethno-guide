@@ -1,0 +1,1 @@
+export {SearchSelect, type SearchSelectProps} from './search-select.ui';
