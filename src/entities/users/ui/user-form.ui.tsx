@@ -3,8 +3,9 @@
 import {type DetailedHTMLProps, type FormHTMLAttributes, useActionState} from "react";
 import {Flex} from "@radix-ui/themes";
 
-import {type User} from "../model/user";
+import {Role, type User} from "../model/user";
 import {FormSelectorField, FormTextField} from "@/share/ui/form";
+import {roleLabelMap} from "@/entities/users/model/user-role-label-map";
 
 export type UserFormState = {
     userId?: string;
@@ -46,11 +47,10 @@ export function UserForm({user, children, action, ...props}: UserFormProps) {
                                    defaultValue={user?.role ?? 'author'}
                                    error={formResult?.role?.at(0)}
                                    disabled={pending}
-                                   items={[
-                                       {label: 'Администратор', value: 'administrator'},
-                                       {label: 'Модератор', value: 'moderator'},
-                                       {label: 'Автор', value: 'author'},
-                                   ]}/>
+                                   items={Object.values(Role).map(value => ({
+                                       label: roleLabelMap[value], value,
+                                   }))
+                                   }/>
 
                 {children}
             </form>

@@ -30,6 +30,11 @@ export async function getAllUsers(): Promise<User[]> {
     return users;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function findUser(email: string, _: string): Promise<User | undefined> {
+    return users.find((user) => user.email === email);
+}
+
 export async function getUsersPaginationInfo(page: number, pageSize: number, query: string = ""): Promise<PaginationResult> {
     await wait(1000);
     return getPaginationData(searchByFullName(users, query), page, pageSize);

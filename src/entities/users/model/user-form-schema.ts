@@ -1,4 +1,5 @@
 import {z} from "zod";
+import {Role} from "@/entities/users/model/user";
 
 export const userFormSchema = z.object({
     fullName: z.string({
@@ -14,13 +15,13 @@ export const userFormSchema = z.object({
     })
         .email("Электронная почта имеет неверный формат"),
     role: z.union([
-        z.literal("administrator"),
-        z.literal("moderator"),
-        z.literal("author"),
+        z.literal(Role.ADMIN),
+        z.literal(Role.MODERATOR),
+        z.literal(Role.AUTHOR),
     ], {
         required_error: "Поле обязательное",
-        invalid_type_error: "Роль должна быть одной из: administrator, moderator, author",
-    }).refine((value) => ["administrator", "moderator", "author"].includes(value), {
+        invalid_type_error: "Установлена некорректная роль",
+    }).refine((value) => [Role.ADMIN, Role.MODERATOR, Role.AUTHOR].includes(value), {
         message: "Роль должна быть одной из: administrator, moderator, author",
     }),
 });

@@ -26,6 +26,7 @@ export default async function UsersPage(props: {
 
     return (
         <Flex direction="column" gap="4">
+
             <Flex gap="2">
                 <CreateUserButton searchParams={searchParams}/>
                 <SearchField.Root style={{width: 230}} placeholder="Введите имя пользователя..."/>

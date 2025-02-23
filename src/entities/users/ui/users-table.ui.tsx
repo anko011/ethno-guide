@@ -2,6 +2,7 @@ import {Table} from "@radix-ui/themes";
 
 import {getUsers, type User} from "@/entities/users";
 import {ReactNode} from "react";
+import {UserRoleBadge} from "@/entities/users/ui/user-role-badge.ui";
 
 export type UsersTableProps = {
     currentPage: number;
@@ -28,7 +29,9 @@ export async function UsersTable({actions, currentPage, pageSize = 10, query = '
                     <Table.Row key={user.id}>
                         <Table.RowHeaderCell>{user.fullName}</Table.RowHeaderCell>
                         <Table.Cell>{user.email}</Table.Cell>
-                        <Table.Cell>{user.role}</Table.Cell>
+                        <Table.Cell>
+                            <UserRoleBadge userRole={user.role}/>
+                        </Table.Cell>
 
                         {!!actions && (<Table.Cell>{actions(user)}</Table.Cell>)}
                     </Table.Row>
