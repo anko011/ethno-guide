@@ -1,5 +1,6 @@
-import {IconButton, IconButtonProps, Tooltip} from "@radix-ui/themes";
+import {IconButton, type IconButtonProps, Tooltip} from "@radix-ui/themes";
 import {PlusIcon} from "@radix-ui/react-icons";
+
 import {Link} from "@/share/ui/link";
 
 export type CreateArticleButtonProps = IconButtonProps & {
@@ -8,7 +9,7 @@ export type CreateArticleButtonProps = IconButtonProps & {
 }
 
 export function CreateArticleButton(
-    {   
+    {
         nationId,
         searchParams = new URLSearchParams(),
         ...props

@@ -2,8 +2,8 @@ import {DeleteArticleAlert} from "@/features/articles/delete";
 import {getAllArticles} from "@/entities/articles";
 
 export async function generateStaticParams() {
-    const users = await getAllArticles();
-    return users.map(({id}) => ({id}))
+    const articles = await getAllArticles();
+    return articles.map(({id}) => ({id}))
 }
 
 export default async function DeleteArticle(props: {

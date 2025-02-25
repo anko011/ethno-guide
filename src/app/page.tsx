@@ -1,18 +1,20 @@
+import * as React from "react";
 import {ReactNode, Suspense} from "react";
 import {Session} from "next-auth";
 
 import {Box, Flex, Heading, Skeleton, Spinner, Text} from "@radix-ui/themes";
 
-import {auth, LogoutButton} from "@/features/auth";
+import {LogoutButton} from "@/features/auth";
 
 import {RussianMap} from "@/entities/areas";
 import {Role} from "@/entities/users";
-import {ArticlesCardList} from "@/entities/anko_articles";
 
 import {Link} from "@/share/ui/link";
 import {SearchField} from "@/share/ui/search-field";
+import {auth} from "@/features/auth/model/auth";
+import {ArticlesList} from "@/entities/articles";
 
-export function getWelcomeText(session?: Session | null) {
+function getWelcomeText(session?: Session | null) {
     if (!session) return (
         <Text size="1">
             <Link weight="medium" href="/registration">Зарегистрируйтесь</Link>
@@ -42,8 +44,9 @@ export function getWelcomeText(session?: Session | null) {
     return content[user.role];
 }
 
+
 export default async function Home({searchParams}: { searchParams: Promise<{ query: string }> }) {
-    const query = (await searchParams).query;
+    const query = new URLSearchParams(await searchParams);
     const session = await auth();
 
     return (
@@ -64,14 +67,14 @@ export default async function Home({searchParams}: { searchParams: Promise<{ que
             </Flex>
 
             <Box width="100%">
-                <SearchField.Root placeholder="Поиск статьи...">
+                <SearchField.Root action="/articles" placeholder="Поиск статьи...">
                     <SearchField.Content>
-                        <Suspense key={`${query}`} fallback={
-                            <Flex justify="center" align="center">
+                        <Suspense key={`${query.get('query')}`} fallback={
+                            <Flex justify="center" align="center" minWidth='100%' minHeight="118px" maxHeight="100%">
                                 <Spinner size="3"/>
                             </Flex>
                         }>
-                            <ArticlesCardList query={query}/>
+                            <ArticlesList currentPage={1} pageSize={10} query={query}/>
                         </Suspense>
                     </SearchField.Content>
                 </SearchField.Root>

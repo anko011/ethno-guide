@@ -1,4 +1,5 @@
 import {Button, Flex, Heading, Text} from "@radix-ui/themes";
+
 import {FormTextField} from "@/share/ui/form";
 import {Link} from "@/share/ui/link";
 
@@ -19,11 +20,10 @@ export default function RegistrationPage() {
                     <FormTextField label="Имя"/>
                     <FormTextField label="Фамилия"/>
                     <FormTextField label="Email"/>
-                    <FormTextField label="Пароль"/>
+                    <FormTextField label="Пароль" type="password"/>
                 </Flex>
 
                 <Flex justify="end" gap="2">
-
                     <Button type="submit">Зарегистрироваться</Button>
                 </Flex>
             </form>

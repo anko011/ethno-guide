@@ -1,4 +1,4 @@
-export type ContentItem =
+export type ArticleContentItem =
     | { type: 'heading'; level: 1 | 2 | 3 | 4 | 5 | 6; text: string }
     | { type: 'paragraph'; text: string }
     | { type: 'list'; items: string[] }
@@ -9,6 +9,6 @@ export type Article = {
     id: string;
     nationId: string;
     title: string;
-    content: ContentItem[];
+    content: ArticleContentItem[];
     author: string;
 };

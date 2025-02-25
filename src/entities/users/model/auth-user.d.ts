@@ -6,6 +6,7 @@ declare module "next-auth" {
         user: AppUser
     }
 
+    // eslint-disable-next-line
     interface User extends AppUser {
     }
 }

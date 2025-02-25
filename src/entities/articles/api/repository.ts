@@ -1,10 +1,13 @@
 'use server';
 
-import { type Article } from "../model/article";
-import { articles } from "../mock";
-import { wait } from "@/share/libs/dev";
+import {wait} from "@/share/libs/dev";
+
+import {type Article} from "../model/article";
+import {articles} from "../mock";
+import {getPaginationData, paginate, PaginationResult} from "@/share/libs/pagination";
 
 export async function getArticleByNationId(id: string): Promise<Article | null> {
+    await wait(1000);
     return articles.find(article => article.nationId === id) ?? null;
 }
 
@@ -24,7 +27,7 @@ export async function createArticle(data: Omit<Article, 'id'>): Promise<void> {
     await wait(1000);
     articles.push({
         ...data,
-        id: (Math.max(...articles.map(({ id }) => parseInt(id)), 0) + 1).toString(),
+        id: (Math.max(...articles.map(({id}) => parseInt(id)), 0) + 1).toString(),
     });
 }
 
@@ -33,7 +36,7 @@ export async function editArticle(articleId: string, data: Omit<Article, 'id'>):
     const article = articles.find((article) => article.id === articleId);
     if (!article) throw new Error(`Article ${articleId} not found`);
     const index = articles.findIndex((article) => article.id === articleId);
-    articles[index] = { ...article, ...data };
+    articles[index] = {...article, ...data};
 }
 
 export async function deleteArticle(id: string): Promise<void> {
@@ -62,30 +65,23 @@ export async function getArticles(currentPage: number, pageSize: number, query: 
     return filteredArticles.slice(startIndex, endIndex);
 }
 
-export async function getArticlesPaginationInfo(currentPage: number, pageSize: number, query: string): Promise<{
-    items: Article[];
-    totalPages: number;
-    totalItems: number;
-}> {
+export async function findArticles(
+    currentPage: number,
+    pageSize: number,
+    query: URLSearchParams = new URLSearchParams()
+): Promise<Article[]> {
     await wait(1000);
-    let filteredArticles = [...articles];
 
-    // Фильтрация по запросу
-    if (query) {
-        query = query.toLowerCase();
-        filteredArticles = filteredArticles.filter(article =>
-            article.title.toLowerCase().includes(query) ||
-            article.author.toLowerCase().includes(query)
-        );
-    }
+    const filteredArticles = articles.filter(article => {
+        if (query.has('nationId') && article.nationId !== query.get('nationId')) return false;
+        if (query.has('query') && !article.title.toLowerCase().includes(query.get('query')!.toLowerCase())) return false;
+        return !(query.has('author') && !article.author.toLowerCase().includes(query.get('author')!.toLowerCase()));
 
-    const totalItems = filteredArticles.length;
-    const totalPages = Math.ceil(totalItems / pageSize);
+    });
 
-    // Пагинация
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const items = filteredArticles.slice(startIndex, endIndex);
+    return paginate(filteredArticles, currentPage, pageSize);
+}
 
-    return { items, totalPages, totalItems };
+export async function getArticlesPaginationInfo(currentPage: number, pageSize: number, query: URLSearchParams = new URLSearchParams()): Promise<PaginationResult> {
+    return getPaginationData(await findArticles(currentPage, pageSize, query), currentPage, pageSize);
 }

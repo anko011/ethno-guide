@@ -2,13 +2,14 @@ import {ZodError} from "zod";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-import {findUser, Role, type User} from "@/entities/users";
+import {type Role, type User} from "@/entities/users/model/user";
+import {findUser} from "@/entities/users/api/repository";
 
 import {signInSchema} from "./sign-in-schema";
 import {NotFoundUserError} from "./user-not-fount-error";
 
 
-export const {handlers, signIn, signOut, auth} = NextAuth({
+const handler = NextAuth({
     callbacks: {
         async jwt({token, user}) {
             if (user) {
@@ -54,3 +55,5 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
         }),
     ],
 })
+
+export const {signIn, signOut, auth, handlers} = handler;

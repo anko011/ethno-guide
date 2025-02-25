@@ -1,10 +1,11 @@
-import {Table} from "@radix-ui/themes";
-
-import {getArticles, type Article} from "@/entities/articles";
 import {ReactNode} from "react";
+
+import {Link, Table} from "@radix-ui/themes";
+
 import {getNation} from "@/entities/nations";
 
-import {Link} from "@radix-ui/themes";
+import {type Article} from "../model/article";
+import {getArticles} from "../api/repository";
 
 export type ArticlesTableProps = {
     currentPage: number;

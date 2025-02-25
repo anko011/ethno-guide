@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
 import {ReactNode} from "react";
+
 import {Card} from "@radix-ui/themes";
 
 export const metadata: Metadata = {

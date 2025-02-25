@@ -1,8 +1,9 @@
 'use server'
 import {redirect} from "next/navigation";
 
-import {signInSchema} from "./sign-in-schema";
 import {NotFoundUserError} from "../model/user-not-fount-error";
+
+import {signInSchema} from "./sign-in-schema";
 import {signIn} from "./auth";
 
 export type SignInActionResult = {

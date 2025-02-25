@@ -3,23 +3,26 @@
 import {type ReactNode, useState} from "react";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
-import {Box, TextField} from "@radix-ui/themes";
+import {TextField} from "@radix-ui/themes";
 import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
 import {useDebouncedCallback} from "use-debounce";
 
 import {SearchFieldContext} from "./context";
+import Form from "next/form";
 
 export type SearchFieldProps = TextField.RootProps & {
     children?: ReactNode;
+    action?: string;
 }
 
-export function Root({placeholder, children, ...props}: SearchFieldProps) {
+export function Root({placeholder, children, action, ...props}: SearchFieldProps) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace} = useRouter();
 
     const [query, setQuery] = useState(searchParams.get('query') ?? '');
     const [focused, setFocused] = useState(false);
+
 
     let timeoutId: ReturnType<typeof setTimeout>;
 
@@ -48,7 +51,10 @@ export function Root({placeholder, children, ...props}: SearchFieldProps) {
         }
         , 300);
     return (
-        <Box style={{position: 'relative'}}>
+        <Form action={function () {
+            if (action) replace(`${action}?${new URLSearchParams(`query=${query}`)}`);
+        }}
+              style={{position: 'relative'}}>
             <TextField.Root placeholder={placeholder}
                             value={query}
                             onFocus={handleFocus}
@@ -66,6 +72,6 @@ export function Root({placeholder, children, ...props}: SearchFieldProps) {
             <SearchFieldContext.Provider value={{query, focused}}>
                 {children}
             </SearchFieldContext.Provider>
-        </Box>
+        </Form>
     )
 }

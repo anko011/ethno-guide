@@ -20,7 +20,7 @@ export default function RootLayout(
 
         <Theme accentColor="iris">
             <Background/>
-            <Flex justify="center" align="center" width="100vw" minHeight="100vh">
+            <Flex justify="center" align="center" width="100%" minHeight="100vh">
                 {children}
                 {modal}
             </Flex>

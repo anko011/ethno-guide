@@ -6,7 +6,7 @@ import {Box, Button, Flex, Heading, Text} from "@radix-ui/themes";
 import {FormTextField} from "@/share/ui/form";
 import {Link} from "@/share/ui/link";
 
-import {action, SignInActionResult} from "../model/sign-in-action";
+import {action, type SignInActionResult} from "../model/sign-in-action";
 
 
 export function SignInForm() {
