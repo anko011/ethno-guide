@@ -1,10 +1,14 @@
 import {notFound} from "next/navigation";
 
 import {Box, Button, Card, Flex, Heading, ScrollArea, Separator, Text,} from '@radix-ui/themes';
-import {ArticleView, getArticleByNationId} from "@/entities/articles";
+import {ArticleView, getAllArticles, getArticleByNationId} from "@/entities/articles";
 import {Link} from "@/share/ui/link";
 import {EditArticleButton} from "@/features/articles/edit";
 
+export async function generateStaticParams() {
+    const articles = await getAllArticles();
+    return articles.map(({id}) => ({id}));
+}
 
 export default async function ArticlePage(props: { params: Promise<{ id: string }> }) {
     const {id} = await props.params;

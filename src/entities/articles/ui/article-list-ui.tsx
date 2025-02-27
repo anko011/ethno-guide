@@ -1,8 +1,9 @@
 import {ReactNode} from "react";
 
-import {Card, DataList, Flex, Link} from "@radix-ui/themes";
+import {Card, DataList, Flex} from "@radix-ui/themes";
 
 import {getNation} from "@/entities/nations";
+import {Link} from "@/share/ui/link";
 
 import {type Article} from "../model/article";
 import {findArticles} from '../api/repository';
@@ -14,7 +15,10 @@ export type ArticleListProps = {
     query?: URLSearchParams;
 }
 
-// Функция для получения данных национальности
+// TODO: Функции для получения данных хранятся в repository.ts
+// TODO: Нации можно получить через Promise.all вызывая нации
+// TODO: Если читал про FSD то на кросс импорт модулей забей
+
 async function fetchNationsForArticles(articles: Article[]): Promise<Map<string, string>> {
     const nationIds = [...new Set(articles.map(article => article.nationId))]; // Уникальные nationId
     const nations = await Promise.all(nationIds.map(id => getNation(id)));

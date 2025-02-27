@@ -10,6 +10,8 @@ import {Editor} from "@/share/ui/editor";
 
 import {type Article, type ArticleContentItem} from "../model/article";
 
+//TODO: Типы рендеров относятся к редактору, но не к самой сущности статьи, т.е. ARTICLE_CONTENT_ITEM переименовать и перенести в модуль editor
+//TODO: уточни по редактору исключительно нативная верстка? Или можно использовать Radix ui иначе тема по сайту будет не консистентная
 function contentItemsToHtml(content?: ArticleContentItem[]): string {
     if (!Array.isArray(content) || content.length === 0) {
         return '';
@@ -18,15 +20,15 @@ function contentItemsToHtml(content?: ArticleContentItem[]): string {
         if (item.type === 'heading') return `<h${item.level}>${item.text}</h${item.level}>`;
         if (item.type === 'paragraph') return `<p>${item.text}</p>`;
         if (item.type === 'list') return `<ul>${item.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
-        if (item.type === 'image') return `<img src="${item.src}" alt="${item.src}" />`;
+        if (item.type === 'image') return `<img src="${item.src}" alt="ТУТ НАДО ОПИСАНИЕ" />`;
         return '';
     }).join('');
 }
 
 export type ArticleFormState = {
-    title?: string;
+    title?: string; //TODO: Тут я обычно юзаю массивы, а уже на самой форме решаю отображать все или только одну
     content?: string;
-    author?: string;
+    author?: string; //TODO: authorId наверное все таки
 } | null;
 
 export type ArticleFormProps =
@@ -36,7 +38,7 @@ export type ArticleFormProps =
     article?: Article;
 };
 
-
+//TODO: Я удалил nationId, мне кажется что нации будет проставлять модератор, вдруг надо будет создать новые нации для статьи и автор явно не должен таким заниматься
 export function ArticleForm({article, children, action, ...props}: ArticleFormProps) {
     const [formResult, dispatch, pending] = useActionState<ArticleFormState>(action, null);
     const articleContent = contentItemsToHtml(article?.content);

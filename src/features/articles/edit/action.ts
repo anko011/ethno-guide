@@ -18,7 +18,8 @@ export async function action(id: string, _: ArticleFormState, formData?: FormDat
             author: fieldErrors.author?.[0],
         };
     }
-    // await editArticle(id, result.data);
+    //TODO: не бьются типы
+    //await editArticle(id, result.data);
     const searchParams = await getSearchParams();
     searchParams.delete('modal');
 

@@ -7,6 +7,11 @@ import {Link, LinkProps} from "@/share/ui/link";
 
 import type {Article, ArticleContentItem} from "../model/article";
 
+//TODO: Это надо перенести в модуль editor
+//TODO: обрати внимание на картинки, используется Image из nextjs, он проводит оптимизацию картинок,
+// но для этого еще надо знать размеры картинок, подумай, о том как их получать и хранить,
+// в целом планируй на то, что будем использовать не ссылки на картинки, а сами заружать их на свой сервер
+
 function TextContent({children, ...props}: TextProps) {
     return <Text as="p" size="3" {...props}>{children}</Text>;
 }
