@@ -1,7 +1,5 @@
-'use client'
-
-import {useRouter} from "next/navigation";
 import {Tooltip} from "@radix-ui/themes";
+import {Link} from "@/share/ui/link";
 
 export type AdministrationAreaProps = {
     title: string;
@@ -10,18 +8,14 @@ export type AdministrationAreaProps = {
 }
 
 export function AdministrationArea({title, d, id}: AdministrationAreaProps) {
-    const {push} = useRouter();
-
     const searchParams = new URLSearchParams();
     searchParams.set('modal', 'true');
 
-    const onClick = () => {
-        push(`/areas/${id}?${searchParams}`);
-    }
-
     return (
         <Tooltip content={title}>
-            <path d={d} onClick={onClick} style={{pointerEvents: 'all'}}/>
+            <Link href={`/areas/${id}?${searchParams}`}>
+                <path d={d} pointerEvents="all"/>
+            </Link>
         </Tooltip>
     )
 }
