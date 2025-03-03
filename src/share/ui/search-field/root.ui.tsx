@@ -10,17 +10,18 @@ import {useDebouncedCallback} from "use-debounce";
 import {SearchFieldContext} from "./context";
 import Form from "next/form";
 
-export type SearchFieldProps = TextField.RootProps & {
+export type RootProps = TextField.RootProps & {
     children?: ReactNode;
     action?: string;
+    queryKey?: string;
 }
 
-export function Root({placeholder, children, action, ...props}: SearchFieldProps) {
+export function Root({placeholder, queryKey = 'query', children, action, ...props}: RootProps) {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace} = useRouter();
 
-    const [query, setQuery] = useState(searchParams.get('query') ?? '');
+    const [query, setQuery] = useState(searchParams.get(queryKey) ?? '');
     const [focused, setFocused] = useState(false);
 
 
@@ -43,16 +44,16 @@ export function Root({placeholder, children, action, ...props}: SearchFieldProps
             if (params.has('page')) params.set('page', '1');
 
             if (term) {
-                params.set('query', term);
+                params.set(queryKey, term);
             } else {
-                params.delete('query');
+                params.delete(queryKey);
             }
             replace(`${pathname}?${params.toString()}`);
         }
         , 300);
     return (
         <Form action={function () {
-            if (action) replace(`${action}?${new URLSearchParams(`query=${query}`)}`);
+            if (action) replace(`${action}?${new URLSearchParams(`${queryKey}=${query}`)}`);
         }}
               style={{position: 'relative'}}>
             <TextField.Root placeholder={placeholder}

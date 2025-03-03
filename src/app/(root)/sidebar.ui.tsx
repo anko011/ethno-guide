@@ -16,7 +16,7 @@ export async function Sidebar({children}: { children?: ReactNode }) {
                     </>
                 }
 
-                <Box flexGrow="1">
+                <Box flexGrow="1" height="100%">
                     {children}
                 </Box>
 

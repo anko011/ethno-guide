@@ -1,11 +1,11 @@
 'use client'
 
+import {useSearchParams} from "next/navigation";
 import {Box, type BoxProps, Heading} from "@radix-ui/themes";
 
 import {Navigation} from "@/share/ui/navigation";
 
 import {type Nation} from "../model/nation";
-import {useSearchParams} from "next/navigation";
 
 export type NationsNavigationListProps = BoxProps & {
     nations: Nation[];
@@ -31,12 +31,7 @@ export function NationsNavigationList({nations, slug, ...props}: NationsNavigati
 
     return (
         <Box {...props}>
-            <Heading size="2">Национальности</Heading>
             <Navigation.Root>
-                <Navigation.Item href={slug} isActive={!activeId}>
-                    Все
-                </Navigation.Item>
-
                 {data.map((item) => (
                     <Navigation.Item key={item.id}
                                      href={item.href}

@@ -14,6 +14,10 @@ function searchByTitle<T extends { name: string }>(items: T[], query: string): T
     return items.filter(item => normalize(item.name).includes(normalizedQuery));
 }
 
+export async function findNations(query: string = ''): Promise<Nation[]> {
+    await wait(5000 * Math.random());
+    return searchByTitle(nations, query)
+}
 
 export async function getAllNations(): Promise<Nation[]> {
     await wait(1000);
@@ -57,7 +61,6 @@ export async function createNation(name: string, dataPopulations: { areaId: stri
         populations.push({nation, area, count})
     }
 }
-
 
 export async function editNation(nationId: string, data: {
     name: string,

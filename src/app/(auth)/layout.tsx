@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import {ReactNode} from "react";
 
-import {Card} from "@radix-ui/themes";
+import {Card, Flex} from "@radix-ui/themes";
 
 export const metadata: Metadata = {
     title: "Auth layout",
@@ -15,8 +15,10 @@ export default function AuthLayout(
         children: ReactNode;
     }>) {
     return (
-        <Card size="4">
-            {children}
-        </Card>
+        <Flex align="center" justify="center" height="100vh">
+            <Card size="4">
+                {children}
+            </Card>
+        </Flex>
     )
 }

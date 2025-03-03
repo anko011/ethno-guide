@@ -3,7 +3,7 @@ import {AdministrationArea} from "./administation-area.ui";
 import styles from './russian-map.module.css';
 
 
-export async function RussianMap() {
+export async function RussianMap({activeAreaIDs}: { activeAreaIDs: string[] }) {
     const areas = await getAllAreas();
     return (
         <svg
@@ -17,6 +17,7 @@ export async function RussianMap() {
                                     id={area.id}
                                     title={area.title}
                                     d={area.d}
+                                    active={activeAreaIDs.includes(area.id)}
                 />
             ))}
         </svg>

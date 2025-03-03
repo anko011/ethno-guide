@@ -5,23 +5,27 @@ import {Box, BoxProps, ScrollArea} from "@radix-ui/themes";
 
 import {useSearchFieldContext} from "@/share/ui/search-field/context";
 
-export type ContentProps = BoxProps;
+export type ContentProps = BoxProps & {
+    alwaysOpen?: boolean;
+    height?: string;
+    zIndex?: number;
+};
 
-export function Content({children}: ContentProps) {
+export function Content({children, height = 'auto', zIndex = 1, alwaysOpen = false, ...props}: ContentProps) {
     const {query, focused} = useSearchFieldContext();
-    if (!query || !focused) return null;
+    if (!alwaysOpen && (!query || !focused)) return null;
 
     return (
         <Box top="100%"
              left="0"
              right="0"
-             mt="1"
-             style={{position: 'absolute'}}
+             style={{position: 'absolute', zIndex, backgroundColor: 'var(--gray-a3)'}}
+             {...props}
         >
             <ScrollArea
-                style={{height: '75vh'}}
+                style={{height}}
             >
-                <Box style={{background: 'var(--gray-a3)'}}>
+                <Box>
                     {children}
                 </Box>
             </ScrollArea>

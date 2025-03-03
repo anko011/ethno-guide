@@ -5,8 +5,8 @@ export function Background() {
     return (
         <Box className={styles.root}>
 
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid" width="1920"
-                 height="1080"
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 3840 2160"
                  className={styles.svgRoot}
             >
 
@@ -29,31 +29,31 @@ export function Background() {
                     <path opacity="0.4"
                           fill="url(#a)"
                           className={`${styles.wave} ${styles.wave1}`}
-                          d="M 0 0 L 0 716.15 Q 192 567.61 384 536.04 T 768 562.46 T 1152 495.25 T 1536 394.63 T 1920 262.55 L 1920 0 Z"
+                          d="M 0 0 L 0 1432.3 Q 384 1135.22 768 1072.08 T 1536 1124.92 T 2304 990.5 T 3072 789.26 T 3840 525.1 L 3840 0 Z"
                     />
 
                     <path opacity="0.4"
                           fill="url(#a)"
                           className={`${styles.wave} ${styles.wave2}`}
-                          d="M 0 0 L 0 633.593 Q 192 622.124 384 586.453 T 768 510.674 T 1152 531.83 T 1536 387.78 T 1920 288.57 L 1920 0 Z"
+                          d="M 0 0 L 0 1267.186 Q 384 1244.248 768 1172.906 T 1536 1021.348 T 2304 1063.66 T 3072 775.56 T 3840 577.14 L 3840 0 Z"
                     />
 
                     <path opacity="0.4"
                           fill="url(#b)"
                           className={`${styles.wave} ${styles.wave3}`}
-                          d="M 0 0 L 0 655.353 Q 192 552.55 384 523.757 T 768 487.315 T 1152 503.859 T 1536 372.617 T 1920 329.337 L 1920 0 Z"
+                          d="M 0 0 L 0 1310.706 Q 384 1105.1 768 1047.514 T 1536 974.63 T 2304 1007.718 T 3072 745.234 T 3840 658.674 L 3840 0 Z"
                     />
 
                     <path opacity="0.4"
                           fill="url(#b)"
                           className={`${styles.wave} ${styles.wave4}`}
-                          d="M 0 0 L 0 617.535 Q 192 574.627 384 555.356 T 768 493.636 T 1152 470.152 T 1536 408.404 T 1920 228.801 L 1920 0 Z"
+                          d="M 0 0 L 0 1235.07 Q 384 1149.254 768 1110.712 T 1536 987.272 T 2304 940.304 T 3072 816.808 T 3840 457.602 L 3840 0 Z"
                     />
 
                     <path opacity="0.4"
                           fill="url(#c)"
                           className={`${styles.wave} ${styles.wave5}`}
-                          d="M 0 0 L 0 679.116 Q 192 658.075 384 623.73 T 768 567.583 T 1152 431.904 T 1536 374.88 T 1920 308.071 L 1920 0 Z"
+                          d="M 0 0 L 0 1358.232 Q 384 1316.15 768 1247.46 T 1536 1135.166 T 2304 863.808 T 3072 749.76 T 3840 616.142 L 3840 0 Z"
                     />
 
                     <g></g>

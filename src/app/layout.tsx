@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 import type {Metadata} from "next";
-import {Flex, Theme} from "@radix-ui/themes";
+import {Theme} from "@radix-ui/themes";
 import {Background} from "@/share/ui/background";
 
 import "@radix-ui/themes/styles.css";
@@ -20,10 +20,8 @@ export default function RootLayout(
 
         <Theme accentColor="iris">
             <Background/>
-            <Flex justify="center" align="center" width="100%" minHeight="100vh">
-                {children}
-                {modal}
-            </Flex>
+            {children}
+            {modal}
         </Theme>
         </body>
         </html>

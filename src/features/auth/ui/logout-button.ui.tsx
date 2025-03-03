@@ -10,7 +10,7 @@ export type LogoutButtonProps = ButtonProps;
 export function LogoutButton(props: LogoutButtonProps) {
     return (
         <form action={logoutAction}>
-            <Button type="submit" variant="ghost" color="crimson" {...props}>
+            <Button type="submit" variant="ghost" color="crimson" m="2" {...props} >
                 <ExitIcon/>
                 Выйти
             </Button>

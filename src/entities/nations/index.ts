@@ -8,6 +8,7 @@ export {
     getNations,
     getAllNations,
     getNation,
+    findNations,
 } from './api/repository';
 
 export {type Nation} from './model/nation';
@@ -19,3 +20,4 @@ export {NationForm, type NationFormProps, type NationFormState} from './ui/natio
 export {PopulationsTable, type PopulationsTableProps} from './ui/population-table.ui';
 export {PopulationForm, type PopulationFormResult, type PopulationFormState} from './ui/population-form.ui';
 export {NationsNavigationList, type NationsNavigationListProps} from './ui/nations-navigation.ui';
+export {SearchableNationSelectList} from './ui/searchable-nation-select.ui';
