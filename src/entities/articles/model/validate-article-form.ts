@@ -4,7 +4,7 @@ export function validateArticleForm(formData?: FormData) {
     return articleFormSchema.safeParse({
             title: formData?.get('title'),
             content: formData?.get('content'),
-            author: formData?.get('author'),
-            nationId: formData?.get('nationId'),
+            authorId: formData?.get('authorId'),
+            nationId: (formData?.getAll('nationId') as string[]) || [],
         });
 }

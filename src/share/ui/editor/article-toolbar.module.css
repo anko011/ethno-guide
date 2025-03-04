@@ -1,25 +1,29 @@
 /*
-TODO: Если хочешь вложенность селекторов, то надо использовать .scss.
+DO: Если хочешь вложенность селекторов, то надо использовать .scss. 
       Вроде бы по спецификации из черновиков еще не вышло вложенность селекторов.
       Используй цвета из radix-color, они хранятся в css переменных подробнее на оф сайте radix color, там типа var(--red-2);
+    - убрал вложенность, использовал цвета radix
 */
 
-.icon {
-    border-radius: 5px;
-    width: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #333333;
-
-    &.disabled {
-        color: rgba(#333333, 0.5);
-        pointer-events: none;
-    }
+.toolbar {
+    border-bottom: 1px solid var(--gray-300);
+    background-color: var(--white-a12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.icon:hover {
-    background: #333333;
-    color: #ffffff;
-    cursor: pointer;
+.buttonGroup {
+    padding: 2px;
+    border-radius: 4px;
+    background-color: var(--gray-a3);
+}
+
+.icon {
+    color: var(--gray-800);
+    padding: 6px;
+}
+
+.divider {
+    color: var(--gray-300);
+    font-size: 20px;
+    margin: 0 3px;
 }

@@ -27,7 +27,7 @@ export async function getNations(page: number, pageSize: number, query: string =
 
 export async function getNation(nationId: string): Promise<Nation> {
     await wait(1000);
-    const nation = nations.find(({id}) => nationId === id);
+    const nation = nations.find(({id}) => nationId.includes(id));
     if (!nation) throw new Error(`Nation with id: ${nationId} not found.`);
     return nation;
 }

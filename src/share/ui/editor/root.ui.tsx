@@ -1,3 +1,6 @@
+//Лаврентьев - сделал здесь use client, т.к. не запускалось приложение после изменения редактора
+'use client'
+
 import {Box, BoxProps} from "@radix-ui/themes";
 import {EditorContext, useEditor} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";

@@ -1,66 +1,11 @@
-import {ReactNode} from "react";
-import Image, {ImageProps} from "next/image";
+import {Flex} from "@radix-ui/themes";
 
-import {Box, Flex, Heading, HeadingProps, Text, TextProps} from "@radix-ui/themes";
+import type {Article} from "../model/article";
+import type {EditorContentItem} from "@/share/ui/editor"
 
-import {Link, LinkProps} from "@/share/ui/link";
+import {TextContent, HeadingContent, ListContent, ImageContent, LinkContent} from '@/share/ui/editor'
 
-import type {Article, ArticleContentItem} from "../model/article";
-
-//TODO: Это надо перенести в модуль editor
-//TODO: обрати внимание на картинки, используется Image из nextjs, он проводит оптимизацию картинок,
-// но для этого еще надо знать размеры картинок, подумай, о том как их получать и хранить,
-// в целом планируй на то, что будем использовать не ссылки на картинки, а сами заружать их на свой сервер
-
-function TextContent({children, ...props}: TextProps) {
-    return <Text as="p" size="3" {...props}>{children}</Text>;
-}
-
-function HeadingContent({children, level, ...props}: HeadingProps & { level: number }) {
-    return (
-        <Heading
-            size={level.toString() as HeadingProps['size']}
-            mt="2"
-            {...props}
-        >
-            {children}
-        </Heading>
-    )
-}
-
-const ListContent = {
-    Root: function ({children}: { children?: ReactNode }) {
-        return (
-            <ul style={{marginTop: '8px', paddingLeft: '16px', listStyleType: 'disc'}}>
-                {children}
-            </ul>
-        )
-    },
-    Item: function ({children}: { children?: ReactNode }) {
-        return <li style={{fontSize: '16px', lineHeight: '1.5'}}>{children}</li>
-    }
-}
-
-function ImageContent({alt, ...props}: ImageProps) {
-    return (
-        <Box position="relative" width="500px" height="500px">
-            <Image alt={alt} objectFit="cover" objectPosition="center" fill {...props}/>
-        </Box>
-    )
-}
-
-function LinkContent({children, ...props}: LinkProps) {
-    return (
-        <Link  {...props}>
-            <Text size="3" mt="2" style={{color: '#007bff', textDecoration: 'underline'}}>
-                {children}
-            </Text>
-        </Link>
-    )
-}
-
-
-export function ArticleContent({content}: { content?: ArticleContentItem[] | string }) {
+export function ArticleContent({content}: { content?: EditorContentItem[] | string }) {
     if (typeof content === 'string') {
         return <TextContent>{content}</TextContent>;
     }
@@ -85,7 +30,7 @@ export function ArticleContent({content}: { content?: ArticleContentItem[] | str
                 )
                     ;
             case 'image':
-                return <ImageContent key={index} src={item.src} alt={item.src}/>
+                return <ImageContent key={index} src={item.src} alt={item.src || 'Изображение статьи'} width={item.width} height={item.height}/>
             case 'link':
                 return <LinkContent href={item.href}/>;
             default:
