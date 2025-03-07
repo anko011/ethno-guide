@@ -1,4 +1,5 @@
-export {type Article, type ArticleContentItem} from './model/article';
+export {type Article} from './model/article';
+export {type EditorContentItem} from "@/share/ui/editor";
 export {validateArticleForm} from './model/validate-article-form';
 
 export {
@@ -10,7 +11,8 @@ export {
     getArticles,
     getAllArticles,
     getArticlesPaginationInfo,
-    findArticles
+    findArticles,
+    fetchNationsForArticles,
 } from './api/repository';
 
 export {ArticleForm, type ArticleFormProps, type ArticleFormState} from './ui/article-form.ui';

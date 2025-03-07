@@ -5,7 +5,8 @@ import {InfoCircledIcon} from "@radix-ui/react-icons";
 
 import {CreateArticleButton} from "@/features/articles/create";
 
-export default async function NotFoundArticle() {
+export default async function NotFoundArticle({params}: {params: {nationId: string}}) {
+    const nationId = params.nationId;
     return (
         <Card size="3">
             <Flex direction="column" gap="4">
@@ -27,8 +28,8 @@ export default async function NotFoundArticle() {
                         Вернуться назад
                     </Button>
                 </Link>
-                {/* TODO: NATION_ID need to mind*/}
-                <CreateArticleButton nationId="1" size="2"/>
+                {/* DO: NATION_ID need to mind - есть?*/}
+                <CreateArticleButton nationId={nationId} size="2"/>
             </Flex>
         </Card>
     )
