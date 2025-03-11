@@ -1,4 +1,4 @@
-import {type Article} from "./model/article";
+import {type Article, ArticleStatus} from "./model/article";
 
 export const articles: Article[] = [
     {
@@ -16,7 +16,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Русские народы преимущественно проживают на территории России, где их можно встретить в различных регионах, таких как Центральный федеральный округ с Москвой и Подмосковьем, Северо-Западный округ с Санкт-Петербургом и Ленинградской областью, а также Приволжский округ, включающий Татарстан и соседние регионы. В Урале русские народы сосредоточены в Свердловской и Челябинской областях, в Сибири — в Новосибирске, Кемерове и других городах. Дальний Восток представлен такими регионами, как Приморский и Хабаровский края. Кроме того, русские общины можно найти в странах ближнего зарубежья, таких как Украина, Казахстан и Белоруссия, где они сохраняют свои традиции и культурные особенности."},
             { type: 'image', src: '/article-images/rus-2.png', alt: "Изображение статьи"},
         ],
-        authorId: "Малков С.",
+        authorId: "1",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "2",
@@ -34,7 +38,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Бурятская культура также включает в себя яркие праздники, такие как Сагаалган (летний новый год) и празднование Будды. Основной религией является буддизм, который влияет на философию и повседневную жизнь бурятов."},
             { type: 'image', src: '/article-images/bur-3.png', alt: "Изображение статьи"},
         ],
-        authorId: "Днепровская В.",
+        authorId: "2",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "3",
@@ -50,7 +58,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Среди основных аспектов культуры якутов – их мифология, народные песни, танцы и праздники. Они отмечают праздники, такие как Ысыах, который посвящен жизненным циклам и природным силам. " },
             { type: 'image', src: '/article-images/yak-3.png', alt: "Изображение статьи"},
         ],
-        authorId: "Днепровская В.",
+        authorId: "2",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "4",
@@ -66,7 +78,11 @@ export const articles: Article[] = [
             { type: 'heading', level: 3, text: "Культура" },
             { type: 'paragraph', text: "Культура юкигаров богата мифами, легендами и устной традицией. Их народные обряды и праздники часто связаны с природными циклами и поклонением духам предков. В последние годы юкигаров пытаются сохранить и возродить свои культурные традиции, язык и идентичность." },
         ],
-        authorId: "Малков С.",
+        authorId: "1",
+        status: ArticleStatus.REJECTED,
+        rejectionReason: "Оформление не соответствует стандарту",
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "5",
@@ -82,7 +98,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Музыка и танцы занимают центральное место в их жизни, а всего лишь несколько инструментов, таких как кота и куруй, помогают создавать уникальные мелодии. Образование и сохранение древнеславянского языка также имеют большое значение для алтайского народа."},
             { type: 'image', src: '/article-images/alt-3.png', alt: "Изображение статьи"},
         ],
-        authorId: "Днепровская В.",
+        authorId: "2",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "6",
@@ -97,7 +117,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Их культура активно сохраняется и развивается, интегрируясь в современное общество." },
             { type: 'image', src: '/article-images/bas-2.png', alt: "Изображение статьи"},
         ],
-        authorId: "Малков С.",
+        authorId: "1",
+        status: ArticleStatus.APPROVED,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "7",
@@ -114,7 +138,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Праздники хакасов насыщены традициями, среди которых стоит отметить Наадым — праздник, посвящённый конкурсам и народным играм. Важной частью культуры является текстильное и декоративное искусство, включая вышивку и резьбу по дереву."},
             { type: 'image', src: '/article-images/hak-3.png', alt: "Изображение статьи"},
         ],
-        authorId: "Днепровская В.",
+        authorId: "2",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     // 8. Белорусы
     {
@@ -132,7 +160,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Долганы придерживаются природных верований, связанных с духами природы и предками, что отражается в их праздниках и ритуалах, часто сопровождающихся танцами и музыкой."},
             
         ],
-        authorId: "Малков С.",
+        authorId: "1",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "9",
@@ -145,7 +177,11 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Как правило, эвенки занимаются оленеводством. Жители северного Заполярья – кочевники, живущие в хижинах, но есть и эвенки, живущие в традиционных якутских или бурятских домах и русских деревянных избах." },
             { type: 'image', src: "/article-images/ev-2.png", alt: "Изображение статьи"},
         ],
-        authorId: "Днепровская В.",
+        authorId: "2",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
     {
         id: "10",
@@ -162,6 +198,10 @@ export const articles: Article[] = [
             { type: 'paragraph', text: "Русские народы преимущественно проживают на территории России, где их можно встретить в различных регионах, таких как Центральный федеральный округ с Москвой и Подмосковьем, Северо-Западный округ с Санкт-Петербургом и Ленинградской областью, а также Приволжский округ, включающий Татарстан и соседние регионы. В Урале русские народы сосредоточены в Свердловской и Челябинской областях, в Сибири — в Новосибирске, Кемерове и других городах. Дальний Восток представлен такими регионами, как Приморский и Хабаровский края. Кроме того, русские общины можно найти в странах ближнего зарубежья, таких как Украина, Казахстан и Белоруссия, где они сохраняют свои традиции и культурные особенности."},
             { type: 'image', src: '/article-images/rus-2.png', alt: "Изображение статьи"},
         ],
-        authorId: "Малков С.",
+        authorId: "1",
+        status: ArticleStatus.PENDING,
+        rejectionReason: undefined,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
 ];

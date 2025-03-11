@@ -26,11 +26,11 @@ export async function WelcomeText({session}: { session?: Session | null }) {
         </Text>,
         [Role.MODERATOR]: <Text size="1">
             {welcomeText}
-            <Link href="/">Модераторная</Link>
+            <Link href="/moderator">Модераторная</Link>
         </Text>,
         [Role.AUTHOR]: <Text size="1">
             {welcomeText}
-            <Link href="/">Личный кабинет</Link>
+            <Link href="/author">Личный кабинет</Link>
         </Text>,
     }
 

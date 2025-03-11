@@ -1,10 +1,12 @@
 'use server';
 
 import {wait} from "@/share/libs/dev";
-import {type Article} from "../model/article";
+import {type Article, ArticleStatus} from "../model/article";
 import {articles} from "../mock";
 import {getPaginationData, paginate, PaginationResult} from "@/share/libs/pagination";
 import {getNation} from "@/entities/nations";
+import { auth } from "@/features/auth";
+import {Role} from "@/entities/users";
 
 export async function getArticleByNationId(id: string): Promise<Article | null> {
     await wait(1000);
@@ -75,6 +77,13 @@ export async function findArticles(
     await wait(1000);
 
     const filteredArticles = articles.filter(article => {
+        if (query.has('status')) {
+            const statusQuery = query.get('status');
+            if (statusQuery === null || article.status !== statusQuery) {
+                return false;
+            }
+        }
+        
         if (query.has('nationId')) {
             const nationIdQuery = query.get('nationId');
             if (nationIdQuery === null || !article.nationId.includes(nationIdQuery)) {
@@ -105,3 +114,50 @@ export async function fetchNationsForArticles(articles: Article[]): Promise<Map<
     });
     return nationMap;
 }
+
+export async function getUserArticles(): Promise<Article[]> {
+    const session = await auth();
+    if (!session?.user?.id) return [];
+    // Здесь должна быть логика запроса к API или базе данных
+    const mockArticles: Article[] = [
+        {
+            id: "1",
+            nationId: ["1"],
+            authorId: session.user.id,
+            title: "Русские: История и Культура",
+            content: [{ type: "paragraph", text: "Русские – восточнославянский народ..." }],
+            status: ArticleStatus.PENDING,
+            rejectionReason: undefined,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        // ... другие статьи
+    ];
+    return mockArticles.filter(article => article.authorId === session.user.id);
+}
+
+export async function getPendingArticles(): Promise<Article[]> {
+    const session = await auth();
+    if (!session?.user?.role || session.user.role !== Role.MODERATOR) return [];
+    // Здесь должна быть логика для модератора
+    const mockArticles: Article[] = [
+        {
+            id: "2",
+            nationId: ["1"],
+            authorId: "user2",
+            title: "Монголы: История",
+            content: [{ type: "paragraph", text: "Монголы – кочевой народ..." }],
+            status: ArticleStatus.PENDING,
+            rejectionReason: undefined,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+    ];
+    return mockArticles.filter(article => article.status === ArticleStatus.PENDING);
+}
+
+export async function updateArticleStatus(articleId: string, status: ArticleStatus, reason?: string): Promise<void> {
+    // Здесь должна быть логика обновления статуса в API или базе данных
+    console.log(`Обновлён статус статьи ${articleId} на ${status}, причина: ${reason}`);
+}
+

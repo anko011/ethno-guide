@@ -26,7 +26,7 @@ export default async function ArticlePage(props: { params: Promise<{ id: string 
                     </Flex>
 
                     <Flex gap="2" justify="between">
-                        <Link href="/" asChild>
+                        <Link href="/articles" asChild>
                             <Button variant="soft" color="gray">
                                 Вернуться назад
                             </Button>
