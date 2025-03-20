@@ -1,7 +1,8 @@
 'use client'
 
 import {useSearchParams} from "next/navigation";
-import {Box, type BoxProps, Heading} from "@radix-ui/themes";
+import {Box, type BoxProps} from "@radix-ui/themes";
+// import { Heading } from "@radix-ui/themes";
 
 import {Navigation} from "@/share/ui/navigation";
 

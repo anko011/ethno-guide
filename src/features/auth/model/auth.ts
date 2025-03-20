@@ -2,12 +2,31 @@ import {ZodError} from "zod";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-import {type Role, type User} from "@/entities/users/model/user";
-import {findUser} from "@/entities/users/api/repository";
+// import {type Role, type User} from "@/entities/users/model/user"; - заккоментил для теста
+import {Role, type User} from "@/entities/users/model/user";
+//import {findUser} from "@/entities/users/api/repository"; - заккоментил для теста
 
 import {signInSchema} from "./sign-in-schema";
 import {NotFoundUserError} from "./user-not-fount-error";
 
+
+// Моковые данные для тестирования
+const mockUsers: Record<string, User> = {
+    "test-author": {
+        id: "1",
+        fullName: "Test Author",
+        email: "author@example.com",
+        role: Role.AUTHOR,
+        // password: "password", // Простой пароль для теста
+    },
+    "test-moderator": {
+        id: "2",
+        fullName: "Test Moderator",
+        email: "moderator@example.com",
+        role: Role.MODERATOR,
+        // password: "password", // Простой пароль для теста
+    },
+};
 
 const handler = NextAuth({
     callbacks: {
@@ -41,8 +60,14 @@ const handler = NextAuth({
                 let user: User | undefined = undefined;
 
                 try {
-                    const {email, password} = await signInSchema.parseAsync(credentials);
-                    user = await findUser(email, password);
+                    const {email} = await signInSchema.parseAsync(credentials);
+                    // const {email, password} = await signInSchema.parseAsync(credentials);
+                    // user = await findUser(email, password);
+                    // Вместо findUser используем моковые данные
+                    user = Object.values(mockUsers).find(
+                        u => u.email === email
+                        //  && u.password === password
+                    );
                 } catch (error) {
                     if (error instanceof ZodError)
                         return null;

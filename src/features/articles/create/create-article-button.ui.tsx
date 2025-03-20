@@ -15,6 +15,7 @@ export function CreateArticleButton(
         ...props
     }
     : CreateArticleButtonProps) {
+    console.log(nationId);
     searchParams?.set('modal', 'true');
     searchParams?.set('nationId', nationId);
     return (

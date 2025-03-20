@@ -1,16 +1,20 @@
-//TODO: Типы рендеров относятся к редактору, но не к самой сущности статьи, т.е. ArticleContentItem переименовать и перенести в модуль editor
+//DO: Типы рендеров относятся к редактору, но не к самой сущности статьи, т.е. ArticleContentItem переименовать и перенести в модуль editor - есть
+import {type EditorContentItem} from "@/share/ui/editor"
 
-export type ArticleContentItem =
-    | { type: 'heading'; level: 1 | 2 | 3 | 4 | 5 | 6; text: string }
-    | { type: 'paragraph'; text: string }
-    | { type: 'list'; items: string[] }
-    | { type: 'image'; src: string } //TODO: add alt attribute
-    | { type: 'link'; text: string; href: string };
+export enum ArticleStatus {
+    PENDING = "На модерации",
+    APPROVED = "Одобрено",
+    REJECTED = "Отклонено",
+}
 
 export type Article = {
     id: string;
-    nationId: string; //TODO: Для одной нации может быть несколько статей, как и одна статья может относиться к нескольким нациями
+    nationId: string[]; //DO: Для одной нации может быть несколько статей, как и одна статья может относиться к нескольким нациями - есть
     title: string;
-    content: ArticleContentItem[];
-    author: string;
+    content: EditorContentItem[];
+    authorId: string;
+    status: ArticleStatus;
+    rejectionReason?: string;
+    createdAt: Date;
+    updatedAt: Date;
 };

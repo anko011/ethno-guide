@@ -22,11 +22,11 @@ export default async function ArticlePage(props: { params: Promise<{ id: string 
                 <Flex align="center" justify="between">
                     <Flex direction="column" gap="2">
                         <Heading size="6">{article.title}</Heading>
-                        <Text as="p" size="2" color="gray">Автор: {article.author}</Text>
+                        <Text as="p" size="2" color="gray">Автор: {article.authorId}</Text>
                     </Flex>
 
                     <Flex gap="2" justify="between">
-                        <Link href="/" asChild>
+                        <Link href="/articles" asChild>
                             <Button variant="soft" color="gray">
                                 Вернуться назад
                             </Button>

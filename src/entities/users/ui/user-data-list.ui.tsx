@@ -1,7 +1,7 @@
 import {DataList, Text} from "@radix-ui/themes";
 
-//TODO: FSD ERROR
-import {auth} from "@/features/auth/model/auth";
+//DO: FSD ERROR - есть (правильно сделал? )
+import {auth} from "@/features/auth";
 import {UserRoleBadge} from "@/entities/users";
 import {Link} from "@/share/ui/link";
 
